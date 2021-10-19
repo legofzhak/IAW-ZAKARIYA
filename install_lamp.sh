@@ -8,6 +8,10 @@ MYSQL_ROOT_PASSWORD=root
 PHPMYADMIN_APP_PASS=root
 STATS_USER=usuario
 STATS_PASSWORD=usuario
+
+EMAIL_HTTPS=zkariyasmr1920@gmail.com
+DOMAIN=iaw-zakariya.ddns.net
+
 #################################################
 
 #Actualizamos el sistema
@@ -93,7 +97,7 @@ cd /var/www/html
 git clone https://github.com/josejuansanchez/iaw-practica-lamp.git
 
 #Movemos el código fendte de la aplicación al directorio /var/html
-mv iaw-practica-lamp/src/*.
+mv iaw-practica-lamp/src/* /var/www/html
 
 #Importamos el script de base de datos
 mysql -u root -p$MYSQL_ROOT_PASSWORD < iaw-practica-lamp/db/database.sql
@@ -106,3 +110,21 @@ rm -rf /var/www/html/iaw-practica-lamp
 
 #Cambiamos el propietario y el grupo de los archivos
 chown www-data:www-data /var/www/html -R
+
+#----------------------------------
+# Configuramos HTTPS
+#----------------------------------
+
+
+# Realizamos la instalacion de snapd
+snap install core
+snap refresh core
+
+# Eliminamos instalaciones previas de certbot con apt
+apt-get remove certbot
+
+# Intalamos certbot con snap
+snap install --classic certbot
+
+# Solicitamos el certificado HTTPS
+sudo certbot --apache -m $EMAIL_HTTPS --agree-tos --no-eff-email -d $DOMAIN
