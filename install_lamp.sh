@@ -9,7 +9,7 @@ PHPMYADMIN_APP_PASS=root
 STATS_USER=usuario
 STATS_PASSWORD=usuario
 
-EMAIL_HTTPS=zkariyasmr1920@gmail.com
+EMAIL_HTTPS=zakariyasmr1920@gmail.com
 DOMAIN=iaw-zakariya.ddns.net
 
 #################################################
